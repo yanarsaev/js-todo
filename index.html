@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo DOM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo">
+            <h1 class="todo-title">Todo List</h1>
+            <form action="" class="form">
+                <input type="text" class="input" id="input">
+                <button type="submit" class="form-btn" id="btn-input">Add</button>
+            </form>
+            <ul class="todo-list" id="list">
+<!--                <li class="item">-->
+<!--                    <input type="checkbox">-->
+<!--                    <p class="todo-list-text">lorem ipsum</p>-->
+<!--                    <button class="todo-list-btn">X</button>-->
+<!--                </li>-->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const list = document.getElementById('list')
+        const input = document.getElementById('input')
+        const btn = document.getElementById('btn-input')
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault()
+            const li = document.createElement('li')
+            const p = document.createElement('p')
+            p.textContent = input.value
+            p.style.margin = '0'
+            li.append(p)
+            li.className = 'item'
+            const checkbox = document.createElement('input')
+            checkbox.setAttribute('type', 'checkbox')
+            li.prepend(checkbox)
+            const btnDelete = document.createElement('button')
+            btnDelete.className = 'todo-list-btn'
+            btnDelete.textContent = '✖'
+            li.append(btnDelete)
+            list.append(li)
+
+            btnDelete.addEventListener('click', (e) => {
+                e.preventDefault()
+                li.remove()
+            })
+
+            checkbox.addEventListener('click', (e) => {
+                if(checkbox) {
+                    p.style.textDecoration = 'line-through'
+                }
+            })
+        })
+    </script>
+</body>
+</html>
